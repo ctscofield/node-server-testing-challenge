@@ -27,7 +27,7 @@ server.post('/resource', async (req, res, next) => {
 //[DELETE]
 server.delete('/resource/:id', validateUserId, async (req, res, next) => {
   try {
-    await Person.remove(req.params.id)
+    await Resource.remove(req.params.id)
     res.json(req.resource)
   } catch (err) {
     next(err)

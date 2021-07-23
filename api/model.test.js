@@ -42,7 +42,7 @@ describe('resources model', () => {
     test("It doesn't get rid of previous entry", async () => {
       const resource = { name: 'Wikipedia' }
       const newEntry = await Resource.insert(resource)
-      expect(newEntry).toMatchObject({ id: 1, name: "Wikipedia" })
+      expect(newEntry).toMatchObject({ id: 2, name: "Wikipedia" })
     })
   })
 
