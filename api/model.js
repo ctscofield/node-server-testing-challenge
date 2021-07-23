@@ -15,8 +15,8 @@ function getById(id) {
   return db('resource').where('id', id).first()
 }
 
-async function insert(person) {
-  const [id] = await db('resource').insert(person)
+async function insert(resource) {
+  const [id] = await db('resource').insert(resource)
   return getById(id)
 }
 

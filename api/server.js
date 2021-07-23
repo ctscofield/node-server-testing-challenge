@@ -4,11 +4,11 @@ const server = express();
 
 server.use(express.json());
 
-const Person = require("./model")
+const Resource = require("./model")
 
 //[GET]
 server.get('/resource', (req, res, next) => {
-  Person.get()
+  Resource.get()
   .then(resources => {
     res.status(200).json(resources)
   })
@@ -18,7 +18,7 @@ server.get('/resource', (req, res, next) => {
 //[POST]
 server.post('/resource', async (req, res, next) => {
   try {
-    res.status(201).json(await Person.insert(req.body))
+    res.status(201).json(await Resource.insert(req.body))
   } catch (err) {
     next(err)
   }
