@@ -42,3 +42,9 @@ describe('[POST] /resource', () => {
     expect(res.body).toMatchObject({ id: 2, name: 'Yellow Pages'})
   })
 })
+
+describe('[DELETE] /resource', () => {
+  test('responds with status code 200', async () => {
+    
+  })
+})
