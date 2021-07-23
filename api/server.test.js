@@ -7,9 +7,9 @@ beforeAll(async () => {
   await db.migrate.rollback()
   await db.migrate.latest()
 }) // migrate
-beforeEach(async () => {
-  await db.seed.run()
-}) // truncate and seed fresh data
+// beforeEach(async () => {
+//   await db.seed.run()
+// }) // truncate and seed fresh data
 afterAll(async () => {
   await db.destroy()
 }) // disconnect from the db
@@ -41,10 +41,19 @@ describe('[POST] /resource', () => {
     })
     expect(res.body).toMatchObject({ id: 2, name: 'Yellow Pages'})
   })
-})
 
-describe('[DELETE] /resource', () => {
-  test('responds with status code 200', async () => {
-    
+
+  describe('[DELETE] /resource', () => {
+    test('removes resource', async () => {
+      const [id] = await db("resource").insert({ name: "jon" });
+      let resources = await db("resource").where({ id }).first();
+      expect(resources).toMatchObject({ id: 3, name: "jon" });
+      expect(resources).toBeTruthy()
+      await request(server).delete("/resource/" + id);
+      resources = await db("resource").where({ id }).first();
+      expect(resources).toBeFalsy();
+    })
   })
 })
+
+

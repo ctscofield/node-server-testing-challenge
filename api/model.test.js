@@ -47,15 +47,16 @@ describe('resources model', () => {
   })
 
   describe('remove', () => {
-    // test('removes entry from resource table', async () => {
-    //   const dell = [
-    //     {id: 1, name: "Wikipedia"},
-    //     {id: 2, name: "Wikipedia"},
-    //     {id: 3, name: "Wikipedia"},
-    //   ]
-    //   await Resource.remove(dell[0].id)
-    //   expect(dell).toHaveLength(2)
-    // })
+    test('removes entry from resource table', async () => {
+      const dell = [
+        {id: 1, name: "Wikipedia"},
+        {id: 2, name: "Wikipedia"},
+        {id: 3, name: "Wikipedia"},
+      ]
+      const results = await Resource.remove(dell[2].id)
+      const req = await Resource.getById(results)
+      expect(req).toBeFalsy()
+    })
     
   })
 
